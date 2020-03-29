@@ -99,15 +99,12 @@ namespace TicTacToe.frontend
 			System.Threading.Thread.Sleep(200);
 			new GameArea().Draw();
 			Console.WriteLine("Here are the rules:");
-			WriteRule("Above is game area."
-			+ " Letter symbolizes row, number symbolizes position from left.");
-			WriteRule("To select a field, write letter+position, e.g. A8, b2, e9, H1 ...");
-			WriteRule("Who gets 4 fields in a row first wins. Diagonals don't count.");
-			WriteRule("You can exit from the program whenever you want by writing \"exit\"");
-			WriteRule("You can restart current game whenever you want by writing \"restart\""
-			+ " (for instance if there's not enough space on playing area)");
-			WriteRule("When you get 5 wins, you won definitively");
-
+			WriteRule("Above is game area - Letter symbolizes row, number symbolizes position from left.");
+			WriteRule("To move, use your keyboard arrow keys.");
+			WriteRule("You start moving from the field you've played on last.");
+			WriteRule("To select a field, press enter.");
+			WriteRule($"Who gets {RowLengthToWin} fields in a row first wins. Diagonals don't count.");
+			WriteRule("When you get 5 wins, you won definitively.");
 		}
 
 		private static void WriteRule(string rule)

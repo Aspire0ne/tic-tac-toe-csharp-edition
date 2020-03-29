@@ -15,7 +15,7 @@ namespace TicTacToe.backend
 		{
 			PrepareConsole();
 			IntroduceGame();
-			new TicTacToe.frontend.OpponentSelection().PrepareParticipants();
+			new frontend.OpponentSelection().PrepareParticipants();
 		}
 
 		private static void PrepareConsole()
