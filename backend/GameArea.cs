@@ -4,11 +4,13 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using TicTacToe.frontend;
+using TicTacToe.backend.utils.ioutils;
 
 namespace TicTacToe.backend
 {
     class GameArea
     {
+        private const ConsoleColor AreaColor = ConsoleColor.Red;
         private List<string> _usedFields = new List<string>();
         internal IReadOnlyList<string> UsedFields { get => _usedFields; }
         private void AddUsedField(string field) => _usedFields.Add(field);
@@ -56,24 +58,24 @@ namespace TicTacToe.backend
         internal void Draw() => Console.WriteLine(Area);
 
 
-        internal void FillField(string field, char character, bool save = true)
+        internal void FillField(string field, char character, ConsoleColor color, bool save = true)
         {
             (byte fromLeft, byte fromTop) coordinations = Fields.ConvertFieldToConsoleCoordinations(field);
             Console.SetCursorPosition(coordinations.fromLeft - 1, coordinations.fromTop - 1);
-            Console.Write(character);
+            ConsoleUtils.WriteColorfully(character, color);
             if (save)
                 AddUsedField(field);
         }
 
         internal bool IsFieldPlayable(string field) => Fields.AllFields.Contains(field) && !UsedFields.Contains(field);
 
-        internal bool TryHighlightField(string fieldToHighlight, char character, string oldField = "")
+        internal bool TryHighlightField(string fieldToHighlight, char character, ConsoleColor color,string oldField = "")
         {
             if (IsFieldPlayable(fieldToHighlight))
             {
                 if (!string.IsNullOrEmpty(oldField))
-                    FillField(oldField, '.', false);
-                FillField(fieldToHighlight, character, false);
+                    FillField(oldField, '.', AreaColor, false);
+                FillField(fieldToHighlight, character, color, false);
 
                 return true;
             }

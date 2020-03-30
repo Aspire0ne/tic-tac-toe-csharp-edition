@@ -9,10 +9,10 @@ namespace TicTacToe.backend.participants
 {
     internal class Player : Participant
     {
-
+        internal override ConsoleColor Color { get; set; } = GetRandomCharacterColor();
         internal override char Character { get; set; }
         //name
-        internal override string Name { get; set; } = "Player_" + new Random().Next(0, 1000);
+        internal override string Name { get; set; } = "Player_" + new Random().Next(1000);
         //wins
         internal override byte Wins { get; private protected set; }
         internal override byte DefinitiveWins => (byte)(Wins / 5);
@@ -29,7 +29,7 @@ namespace TicTacToe.backend.participants
         internal override void Move(ref GameArea gameArea, string _, char character)
         {
             string chosenFieldStr = ChooseField(gameArea, character);
-            gameArea.FillField(chosenFieldStr, Character);
+            gameArea.FillField(chosenFieldStr, Character, Color);
             _usedFields.Add(chosenFieldStr);
         }
 
@@ -38,7 +38,7 @@ namespace TicTacToe.backend.participants
             string currentlyHighlightedField = null;
 
             if (LastUsedField is null)
-                gameArea.TryHighlightField("D5", character);
+                gameArea.TryHighlightField("D5", character, Color);
 
             while (true)
             {
@@ -52,7 +52,7 @@ namespace TicTacToe.backend.participants
 
                 if (move != ConsoleUtils.MoveControl.Select)
                 {
-                    bool highlighted = gameArea.TryHighlightField(fieldToMoveTo, character, currentlyHighlightedField ?? (LastUsedField is null ? "D5" : null));
+                    bool highlighted = gameArea.TryHighlightField(fieldToMoveTo, character, Color, currentlyHighlightedField ?? (LastUsedField is null ? "D5" : null));
                     if (highlighted)
                         currentlyHighlightedField = fieldToMoveTo;
                 }

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace TicTacToe.backend
 {
-    class Launcher
-    {
-		private const byte WindowWidth = 80;
-		private const byte WindowHeight = 45;
+	static class Launcher
+	{
 
 		static void Main(string[] args)
 		{
@@ -20,9 +18,9 @@ namespace TicTacToe.backend
 
 		private static void PrepareConsole()
 		{
-			Console.SetWindowSize(WindowWidth, WindowHeight);
-			Console.SetBufferSize(WindowWidth, WindowHeight);
-			Console.ForegroundColor = ConsoleColor.Red;
+			Console.SetWindowSize(ConsoleSettings.WindowWidth, ConsoleSettings.WindowHeight);
+			Console.SetBufferSize(ConsoleSettings.WindowWidth, ConsoleSettings.WindowHeight);
+			Console.ForegroundColor = ConsoleSettings.Color;
 			Console.Clear();
 		}
 
@@ -31,5 +29,12 @@ namespace TicTacToe.backend
 			utils.ioutils.Sound.Play(TicTacToe.Properties.Resources.zacatek_hry);
 			Console.WriteLine("Welcome to Tic-Tac-Toe!\n");
 		}
+	}
+
+	internal static class ConsoleSettings
+	{
+		internal const byte WindowWidth = 80;
+		internal const byte WindowHeight = 45;
+		internal const ConsoleColor Color = ConsoleColor.Red;
 	}
 }

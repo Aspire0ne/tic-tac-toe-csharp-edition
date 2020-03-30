@@ -6,6 +6,13 @@ namespace TicTacToe.backend.participants
 {
     public abstract class Participant
     {
+        private protected static ConsoleColor GetRandomCharacterColor()
+        {
+            ConsoleColor randomColor = (ConsoleColor)new Random().Next(16);
+            return randomColor == ConsoleSettings.Color ? randomColor + 1 : randomColor;
+        }
+
+        internal abstract ConsoleColor Color { get; set; }
         internal abstract void Move(ref GameArea gameArea, string opponentLastUsedField, char character);
         //characters
         internal static readonly char[] PossibleCharacters = { 'O', 'X' };

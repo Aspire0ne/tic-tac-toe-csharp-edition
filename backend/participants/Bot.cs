@@ -7,6 +7,7 @@ namespace TicTacToe.backend.participants
 {
     class Bot : Participant
     {
+        internal override ConsoleColor Color { get; set; } = GetRandomCharacterColor();
         internal enum DifficultyLevel { Easy, Medium, Hard }
         static readonly string[] Names = {"bot_Noober",
         "bot_theLegend27", "bot_noobMaster69", "bot_TheRadasik",
@@ -36,7 +37,7 @@ namespace TicTacToe.backend.participants
             System.Threading.Thread.Sleep(2000);
             string chosenFieldStr = ChooseField(new List<string>(gameArea.UsedFields), opponentLastUsedField);
             backend.utils.ioutils.Sound.Play(Properties.Resources.click);
-            gameArea.FillField(chosenFieldStr, Character);;
+            gameArea.FillField(chosenFieldStr, Character, Color);
             _usedFields.Add(chosenFieldStr);
         }
 

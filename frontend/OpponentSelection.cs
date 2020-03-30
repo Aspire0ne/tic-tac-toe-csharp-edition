@@ -7,7 +7,7 @@ namespace TicTacToe.frontend
 {
 	class OpponentSelection
 	{
-		private Participant player1 = new Player();
+		private readonly Participant player1 = new Player();
 		private Participant player2;
 		private Bot bot;
 		private enum OpponentMode { Bot = 0, Player = 1 }
@@ -88,7 +88,7 @@ namespace TicTacToe.frontend
 
 		private static char ObtainCharacters()
 		{
-			Console.WriteLine("If you want crosses, write X\nIf you want circles, write O");
+			Console.WriteLine("Write X for crosses, O for circles:");
 			char character = ConsoleUtils.InputString("X", "O").ElementAt(0);
 			Console.WriteLine("\n");
 			return character;

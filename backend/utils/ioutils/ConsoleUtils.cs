@@ -20,6 +20,16 @@ namespace TicTacToe.backend.utils.ioutils
 			{ "UpArrow", MoveControl.Up}
 		};
 
+		internal static void WriteColorfully(string text, ConsoleColor color)
+		{
+			ConsoleColor colorBefore = Console.ForegroundColor;
+			Console.ForegroundColor = color;
+			Console.Write(text);
+			Console.ForegroundColor = colorBefore;
+		}
+
+		internal static void WriteColorfully(char text, ConsoleColor color) => WriteColorfully(text.ToString(), color);
+
 		private static readonly Dictionary<AutoErrorType, string> AutoErrorMessages = new Dictionary<AutoErrorType, string>()
 		{
 			{ AutoErrorType.IncorrectInput, "Incorrect input." }
@@ -101,7 +111,7 @@ namespace TicTacToe.backend.utils.ioutils
 
 		internal static void ShowError(AutoErrorType type)
 		{
-			AutoErrorMessages.TryGetValue(AutoErrorType.IncorrectInput, out string msg);
+			AutoErrorMessages.TryGetValue(type, out string msg);
 			Console.WriteLine(msg);
 		}
 	}
