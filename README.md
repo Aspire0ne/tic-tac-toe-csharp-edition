@@ -1,2 +1,2 @@
-# Tic-Tac-toe - C# edition!
-Rewritten from Java as a practice while learning the language
+# Tic Tac toe: C# edition!
+Rewritten from the Java original that I wrote in the past.
